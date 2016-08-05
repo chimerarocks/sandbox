@@ -1,0 +1,11 @@
+{% extends 'layout.twig' %}
+
+{% block container %}
+<h1>Produtos</h1>
+
+<ul>
+	{% for product in products %}
+		<li>{{ product.name }} ({{ product.description }}): $ {{ product.value }}</li>
+	{% endfor %}
+</ul>
+{% endblock %}
