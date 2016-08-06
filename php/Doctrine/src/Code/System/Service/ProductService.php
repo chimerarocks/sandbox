@@ -3,44 +3,60 @@
 namespace Code\System\Service;
 
 use Code\System\Entity\Product;
-use Code\System\Mapper\ProductMapper;
+use Doctrine\ORM\EntityManager;
 
 class ProductService
 {
-	private $product;
-	private $mapper;
+	private $em;
 
-	public function __construct(Product $product, ProductMapper $mapper)
+	public function __construct(EntityManager $em)
 	{
-		$this->product = $product;
-		$this->mapper = $mapper;
+		$this->em = $em;
 	}
 
 	public function insert(array $data)
 	{
-		$this->product->setName($data['name']);
-		$this->product->setDescription($data['description']);
-		$this->product->setValue($data['value']);
+		$product = new Product();
+		$product->setName($data['name']);
+		$product->setDescription($data['description']);
+		$product->setValue($data['value']);
 
-		return $this->mapper->insert($this->product);
+		$this->em->persist($product);
+		$this->em->flush();
+
+		return $product;
 	}
 
 	public function fetchAll()
 	{
-		return $this->mapper->fetchAll();
+		return $this->em->getRepository(Product::class)->findAll();
 	}
 
 	public function find($id)
 	{
-		return $this->mapper->find($id);
+		return $this->em->find(Product::class, $id);
 	}
 
 	public function update($id, array $data)
 	{
-		$this->product->setName($data['name']);
-		$this->product->setDescription($data['description']);
-		$this->product->setValue($data['value']);
+		$product = $this->em->getReference(Product::class, $id);
+		$product->setName($data['name']);
+		$product->setDescription($data['description']);
+		$product->setValue($data['value']);
 
-		return $this->mapper->update($id, $this->product);
+		$this->em->persist($product);
+		$this->em->flush();
+
+		return $product;
+	}
+
+	public function remove($id)
+	{
+		$product = $this->em->getReference(Product::class, $id);
+		$this->em->remove($product);
+		$this->em->flush();
+		return [
+			'success' => true
+		];
 	}
 }

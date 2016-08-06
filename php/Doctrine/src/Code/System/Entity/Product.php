@@ -2,17 +2,35 @@
 
 namespace Code\System\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="products")
+ */
 class Product
 {
+	/**
+	 * @ORM\Id
+	 * @ORM\Column(type="integer")
+	 * @ORM\GeneratedValue
+	 */
 	private $id;
-	private $name;
-	private $description;
-	private $value;
 
-	public function setId($id) 
-	{
-		$this->id = $id;
-	}
+	/**
+	 * @ORM\Column(type="string", length=255)
+	 */
+	private $name;
+
+	/**
+	 * @ORM\Column(type="string", length=255)
+	 */
+	private $description;
+
+	/**
+	 * @ORM\Column(type="float", length=10)
+	 */
+	private $value;
 
 	public function getId() 
 	{

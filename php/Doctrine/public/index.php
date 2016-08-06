@@ -9,11 +9,7 @@ use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
 use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Code\System\Service\ClientService;
-use Code\System\Entity\Client;
-use Code\System\Mapper\ClientMapper;
 use Code\System\Service\ProductService;
-use Code\System\Entity\Product;
-use Code\System\Mapper\ProductMapper;
 
 $serializer = new Serializer(
     [new GetSetMethodNormalizer(), new ArrayDenormalizer()],
@@ -23,18 +19,12 @@ $serializer = new Serializer(
 $app['serializer'] = $serializer;
 
 $app['clientService'] = function() use ($em) {
-	$clientEntity = new Client();
-	$clientMapper = new ClientMapper($em);
-	$clientService = new ClientService($clientEntity, $clientMapper);
-
+	$clientService = new ClientService($em);
 	return $clientService;
 };
 
 $app['productService'] = function() use ($em) {
-	$productEntity = new Product();
-	$productMapper = new ProductMapper($em);
-	$productService = new ProductService($productEntity, $productMapper);
-
+	$productService = new ProductService($em);
 	return $productService;
 };
 
@@ -134,6 +124,11 @@ $app->put('/api/products/{id}', function($id, Request $req) use ($app) {
 	$data['value'] = $req->get('value');
 
 	$dataset = $app['productService']->update($id, $data);
+	return $app->json($dataset);
+});
+
+$app->delete('/api/products/{id}', function($id) use ($app) {
+	$dataset = $app['productService']->remove($id);
 	return $app->json($dataset);
 });
 

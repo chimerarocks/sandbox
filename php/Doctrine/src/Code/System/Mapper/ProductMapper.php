@@ -3,32 +3,22 @@
 namespace Code\System\Mapper;
 
 use Code\System\Entity\Product;
+use Doctrine\ORM\EntityManager;
 
 class ProductMapper
 {
-	private $dataset = [
-		1 => [
-				'id' => 1,
-				'name' => 'Product A',
-				'description' => 'Um bom produto',
-				'value' => 12
-			],
-		2 => [
-				'id' => 2,
-				'name' => 'Product B',
-				'description' => 'Um bom produto',
-				'value' => 15.2
-			],
-		3 => [
-				'id' => 3,
-				'name' => 'Product C',
-				'description' => 'Um bom produto',
-				'value' => 23.1
-			]
-	];
+
+	private $em;
+
+	public function __construct(EntityManager $em)
+	{
+		$this->em = $em;
+	}
 
 	public function insert(Product $product)
 	{
+		$this->em->persist($product);
+		$this->em->flush();
 		return [
 			'name' => $product->getName(),
 			'description' => $product->getDescription(),
@@ -38,20 +28,38 @@ class ProductMapper
 
 	public function fetchAll()
 	{
-		return $this->dataset;
+		return $this->em->getRepository(Product::class)->findAll();
 	}
 
 	public function find($id)
 	{
-		return $this->dataset[$id];
+		return $this->em->find(Product::class, $id);
 	}
 
 	public function update($id, Product $product)
 	{
+		$productBase = $this->em->find(Product::class, $id);
+		$this->em->persist($productBase);
+
+		$productBase->setName($product->getName());
+		$productBase->setDescription($product->getDescription());
+		$productBase->setValue($product->getValue());
+
+		$this->em->flush();
+
 		return [
 			'name' => $product->getName(),
 			'description' => $product->getDescription(),
 			'value' => $product->getValue()
+		];
+	}
+
+	public function remove($id)
+	{
+		$this->em->remove($this->em->find(Product::class, $id));
+		$this->em->flush();
+		return [
+			'success' => true
 		];
 	}
 }

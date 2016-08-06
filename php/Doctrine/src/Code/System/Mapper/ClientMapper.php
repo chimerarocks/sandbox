@@ -61,7 +61,8 @@ class ClientMapper
 
 	public function remove($id)
 	{
-		$this->em->remove($this->em->find($id));
+		$this->em->remove($this->em->find(Client::class, $id));
+		$this->em->flush();
 		return [
 			'success' => true
 		];

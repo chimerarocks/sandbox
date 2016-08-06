@@ -3,49 +3,60 @@
 namespace Code\System\Service;
 
 use Code\System\Entity\Client;
-use Code\System\Mapper\ClientMapper;
+use Doctrine\ORM\EntityManager;
 
 class ClientService
 {
-	private $client;
-	private $mapper;
+	private $em;
 
-	public function __construct(Client $client, ClientMapper $mapper)
+	public function __construct(EntityManager $em)
 	{
-		$this->client = $client;
-		$this->mapper = $mapper;
+		$this->em = $em;
 	}
 
 	public function insert(array $data)
 	{
-		$this->client->setName($data['name']);
-		$this->client->setEmail($data['email']);
-		$this->client->setCpf($data['cpf']);
+		$client = new Client();
+		$client->setName($data['name']);
+		$client->setEmail($data['email']);
+		$client->setCpf($data['cpf']);
 
-		return $this->mapper->insert($this->client);
+		$this->em->persist($client);
+		$this->em->flush();
+
+		return $client;
 	}
 
 	public function fetchAll()
 	{
-		return $this->mapper->fetchAll();
+		return $this->em->getRepository(Client::class)->findAll();
 	}
 
 	public function find($id)
 	{
-		return $this->mapper->find($id);
+		return $this->em->find(Client::class, $id);
 	}
 
 	public function update($id, array $data)
 	{
-		$this->client->setName($data['name']);
-		$this->client->setEmail($data['email']);
-		$this->client->setCpf($data['cpf']);
+		$client = $this->em->getReference(Client::class, $id);
+		$client->setName($data['name']);
+		$client->setEmail($data['email']);
+		$client->setCpf($data['cpf']);
 
-		return $this->mapper->update($id, $this->client);
+		$this->em->persist($client);
+		$this->em->flush();
+
+		return $client;
 	}
 
 	public function remove($id)
 	{
-		$this->mapper->remove($id);
+		$client = $this->em->getReference(Client::class, $id);
+		$this->em->remove($client);
+		$this->em->flush();
+		return [
+			'success' => true
+		];
 	}
 }
