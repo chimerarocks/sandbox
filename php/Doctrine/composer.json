@@ -1,5 +1,15 @@
 {
     "require": {
-        "doctrine/orm": "~2.4"
+        "silex/silex": "^2.0",
+        "twig/twig": "^1.24",
+        "symfony/twig-bridge": "^3.1",
+        "symfony/validator": "^3.1",
+        "doctrine/orm": "~2.4",
+        "symfony/serializer": "^3.1"
+    },
+    "autoload": {
+    	"psr-4": {
+    		"Code\\System\\": "src/Code/System"
+    	}
     }
 }
