@@ -5,10 +5,10 @@ namespace Code\System\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="Code\System\Entity\ProductRepository")
- * @ORM\Table(name="products")
+ * @ORM\Entity
+ * @ORM\Table(name="coupons")
  */
-class Product
+class Coupon
 {
 	/**
 	 * @ORM\Id
@@ -20,12 +20,7 @@ class Product
 	/**
 	 * @ORM\Column(type="string", length=255)
 	 */
-	private $name;
-
-	/**
-	 * @ORM\Column(type="string", length=255)
-	 */
-	private $description;
+	private $code;
 
 	/**
 	 * @ORM\Column(type="float", length=10)
@@ -37,24 +32,14 @@ class Product
 		return $this->id;
 	}
 
-	public function setName($name) 
+	public function setCode($code) 
 	{
-		$this->name = $name;
+		$this->code = $code;
 	}
 
-	public function getName() 
+	public function getCode() 
 	{
-		return $this->name;
-	}
-
-	public function setDescription($description) 
-	{
-		$this->description = $description;
-	}
-
-	public function getDescription() 
-	{
-		return $this->description;
+		return $this->code;
 	}
 
 	public function setValue($value) 

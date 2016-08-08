@@ -10,6 +10,7 @@ use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Code\System\Service\ClientService;
 use Code\System\Service\ProductService;
+use Code\System\Service\InterestService;
 
 $serializer = new Serializer(
     [new GetSetMethodNormalizer(), new ArrayDenormalizer()],
@@ -23,6 +24,11 @@ $app['clientService'] = function() use ($em) {
 	return $clientService;
 };
 
+$app['interestService'] = function() use ($em) {
+	$interestService = new InterestService($em);
+	return $interestService;
+};
+
 $app['productService'] = function() use ($em) {
 	$productService = new ProductService($em);
 	return $productService;
@@ -32,6 +38,24 @@ $app->get('/', function() use ($app) {
 	return $app['twig']->render('index.twig', []);
 })->bind('index');
 
+
+/**
+ * Interests
+ */
+$app->get('/api/interests', function() use ($app) {
+	$dataset = $app['interestService']->fetchAll();
+	return $app['serializer']->serialize($dataset, 'json');
+});
+
+$app->post('/api/interests', function (Request $req) use ($app) {
+	$data['name'] = $req->get('name');
+	$dataset = $app['interestService']->insert($data);
+	return $app['serializer']->serialize($dataset, 'json');
+});
+
+/**
+ * Clients
+ */
 $app->get('/clients', function() use ($app) {
 	$clients = $app['clientService']->fetchAll();
 	return $app['twig']->render('clients.twig', ['clients' => $clients]);
@@ -56,12 +80,16 @@ $app->post('/api/clients', function(Request $req) use ($app) {
 	$constraint = new Assert\Collection([
 	    'name' => new Assert\Length(['min' => 3]),
 	    'email' => new Assert\Email(),
-	    'cpf' => new Assert\Required()
+	    'cpf' => new Assert\Required(),
+	    'rg' => new Assert\Required(),
+	    'interest' => new Assert\Required()
 	]);
 
 	$data['name'] = $req->get('name');
 	$data['email'] = $req->get('email');
 	$data['cpf'] = $req->get('cpf');
+	$data['rg'] = $req->get('rg');
+	$data['interest'] = $req->get('interest');
 
 	$errors = $app['validator']->validate($data, $constraint);
 
@@ -77,12 +105,14 @@ $app->put('/api/clients/{id}', function($id, Request $req) use ($app) {
 	$constraint = new Assert\Collection([
 	    'name' => new Assert\Length(['min' => 3]),
 	    'email' => new Assert\Email(),
-	    'cpf' => new Assert\Required()
+	    'cpf' => new Assert\Required(),
+	    'rg' => new Assert\Required(),
 	]);
 
 	$data['name'] = $req->get('name');
 	$data['email'] = $req->get('email');
 	$data['cpf'] = $req->get('cpf');
+	$data['rg'] = $req->get('rg');
 
 	$errors = $app['validator']->validate($data, $constraint);
 
@@ -94,6 +124,9 @@ $app->put('/api/clients/{id}', function($id, Request $req) use ($app) {
 	return $app->json($dataset);
 });
 
+/**
+ * Products
+ */
 $app->get('/products', function() use ($app) {
 	$products = $app['productService']->fetchAll();
 	return $app['twig']->render('products.twig', ['products' => $products]);

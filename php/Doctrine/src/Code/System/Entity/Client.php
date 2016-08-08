@@ -5,7 +5,7 @@ namespace Code\System\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Code\System\Entity\ClientRepository")
  * @ORM\Table(name="clients")
  */
 class Client
@@ -28,9 +28,31 @@ class Client
 	private $email;
 
 	/**
-	 * @ORM\Column(type="string", length=20)
+	 * @ORM\OneToOne(targetEntity="Code\System\Entity\ClientProfile")
+	 * @ORM\JoinColumn(name="client_profile", referencedColumnName="id")
 	 */
-	private $cpf;
+	private $profile;
+
+	/**
+	 * @ORM\ManyToOne(targetEntity="Code\System\Entity\Coupon")
+	 * @ORM\JoinColumn(name="client_coupon", referencedColumnName="id")
+	 */
+	private $coupon;
+
+	/**
+	 * @ORM\ManyToMany(targetEntity="Code\System\Entity\Interest")
+	 * @ORM\JoinTable(
+	 	name="clients_interests", 
+		joinColumns={@ORM\JoinColumn(name="client_id", referencedColumnName="id")},
+		inverseJoinColumns={@ORM\JoinColumn(name="interest_id", referencedColumnName="id")}
+		)
+	 */
+	private $interests;
+
+	public function __construct()
+	{
+		$this->interests = new Doctrine\ORM\ArrayCollection;
+	}	
 
 	public function getId()
 	{
@@ -57,13 +79,34 @@ class Client
 		return $this->email;
 	}
 
-	public function setCpf($cpf) 
+	public function setProfile($profile)
 	{
-		$this->cpf = $cpf;
+		$this->profile = $profile;
 	}
 
-	public function getCpf()
+	public function getProfile()
 	{
-		return $this->cpf;
+		return $this->profile;
 	}
+
+	public function setCoupon($coupon)
+	{
+		$this->coupon = $coupon;
+	}
+
+	public function getCoupon()
+	{
+		return $this->coupon;
+	}
+
+	public function addInterest($interest)
+	{
+		$this->interests->add($interest);
+	}
+
+	public function getInterests()
+	{
+		return $this->interests;
+	}
+
 }
