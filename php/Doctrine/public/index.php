@@ -73,7 +73,7 @@ $app->get('/api/clients/{id}', function($id) use ($app) {
 
 $app->delete('/api/clients/{id}', function($id) use ($app) {
 	$dataset = $app['clientService']->remove($id);
-	return $app->json($dataset);
+	return $app['serializer']->serialize($dataset, 'json');
 });
 
 $app->post('/api/clients', function(Request $req) use ($app) {
@@ -98,7 +98,7 @@ $app->post('/api/clients', function(Request $req) use ($app) {
 	}
 
 	$dataset = $app['clientService']->insert($data);
-	return $app->json($dataset);
+	return $app['serializer']->serialize($dataset, 'json');
 });
 
 $app->put('/api/clients/{id}', function($id, Request $req) use ($app) {

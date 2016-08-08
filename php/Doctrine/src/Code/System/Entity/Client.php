@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="Code\System\Entity\ClientRepository")
+ * @ORM\HasLifecycleCallbacks
  * @ORM\Table(name="clients")
  */
 class Client
@@ -49,10 +50,23 @@ class Client
 	 */
 	private $interests;
 
+	/**
+	 * @ORM\Column(type="datetime")
+	 */
+	private $createdAt;
+
 	public function __construct()
 	{
-		$this->interests = new Doctrine\ORM\ArrayCollection;
+		$this->interests = new \Doctrine\Common\Collections\ArrayCollection;
 	}	
+
+	/**
+	 * @ORM\PrePersist
+	 */
+	public function setupDate()
+	{
+		$this->createdAt = new \DateTime();
+	}
 
 	public function getId()
 	{
@@ -109,4 +123,8 @@ class Client
 		return $this->interests;
 	}
 
+	public function getCreatedAt()
+	{
+		return $this->createdAt;
+	}
 }
