@@ -1,12 +1,12 @@
 <?php
 
-namespace TargetMkt\Action;
+namespace TargetMkt\Application\Action;
 
 use Interop\Container\ContainerInterface;
 use Zend\Expressive\Router\RouterInterface;
 use Zend\Expressive\Template\TemplateRendererInterface;
 
-class TestPageFactory
+class UserPageFactory
 {
     public function __invoke(ContainerInterface $container)
     {
@@ -14,6 +14,6 @@ class TestPageFactory
             ? $container->get(TemplateRendererInterface::class)
             : null;
 
-        return new TestPageAction($container->get(\Doctrine\ORM\EntityManager::class), $template);
+        return new UserPageAction($template);
     }
 }

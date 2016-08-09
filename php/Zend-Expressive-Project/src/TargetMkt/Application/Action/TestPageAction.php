@@ -1,6 +1,6 @@
 <?php
 
-namespace TargetMkt\Action;
+namespace TargetMkt\Application\Action;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -12,8 +12,8 @@ use Zend\Expressive\Plates\PlatesRenderer;
 use Zend\Expressive\Twig\TwigRenderer;
 use Zend\Expressive\ZendView\ZendViewRenderer;
 use Doctrine\ORM\EntityManager;
-use TargetMkt\Entity\Address;
-use TargetMkt\Entity\Client;
+use TargetMkt\Domain\Entity\Address;
+use TargetMkt\Domain\Entity\Client;
 
 class TestPageAction
 {

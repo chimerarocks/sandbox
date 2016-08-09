@@ -1,6 +1,6 @@
 <?php
 
-namespace TargetMkt\Service;
+namespace TargetMkt\Domain\Service;
 
 interface BootstrapInterface {
 	public function create();

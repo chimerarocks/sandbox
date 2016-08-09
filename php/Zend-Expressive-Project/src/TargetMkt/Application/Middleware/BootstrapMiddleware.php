@@ -1,12 +1,12 @@
 <?php
 
-namespace TargetMkt\Action;
+namespace TargetMkt\Application\Middleware;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use TargetMkt\Service\BootstrapInterface;
+use TargetMkt\Domain\Service\BootstrapInterface;
 
-class BootstrapAction
+class BootstrapMiddleware
 {
     public function __construct(BootstrapInterface $bootstrap)
     {

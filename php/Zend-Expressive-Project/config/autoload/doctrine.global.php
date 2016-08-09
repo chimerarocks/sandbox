@@ -21,11 +21,11 @@ return [
 			'TargetMkt_driver' => [
 				'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
 				'cache' => 'array',
-				'paths' => [__DIR__ . '/../../src/TargetMkt/Entity']
+				'paths' => [__DIR__ . '/../../src/TargetMkt/Domain/Entity']
 			],
 			'orm_default' => [
 				'drivers' => [
-					'TargetMkt\Entity' => 'TargetMkt_driver'
+					'TargetMkt\Domain\Entity' => 'TargetMkt_driver'
 				]
 			]
 		]

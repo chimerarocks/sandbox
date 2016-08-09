@@ -1,6 +1,6 @@
 <?php
 
-namespace TargetMkt\Entity;
+namespace TargetMkt\Domain\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -33,7 +33,7 @@ class Client
     protected $cpf;
 
     /**
-     * @ORM\OneToMany(targetEntity="TargetMkt\Entity\Address", cascade="persist", mappedBy="client")
+     * @ORM\OneToMany(targetEntity="TargetMkt\Domain\Entity\Address", cascade="persist", mappedBy="client")
      */
     protected $addresses;
 

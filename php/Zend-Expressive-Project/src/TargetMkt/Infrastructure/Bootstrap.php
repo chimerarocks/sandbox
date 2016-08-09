@@ -2,7 +2,7 @@
 
 namespace TargetMkt\Infrastructure;
 
-use TargetMkt\Service\BootstrapInterface;
+use TargetMkt\Domain\Service\BootstrapInterface;
 
 class Bootstrap implements BootstrapInterface {
 	public function create() 

@@ -1,6 +1,6 @@
 <?php
 
-namespace TargetMkt\Action;
+namespace TargetMkt\Ppplication\Action;
 
 use Zend\Diactoros\Response\JsonResponse;
 use Psr\Http\Message\ResponseInterface;

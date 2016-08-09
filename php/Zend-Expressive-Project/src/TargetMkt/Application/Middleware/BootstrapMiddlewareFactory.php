@@ -1,16 +1,15 @@
 <?php
 
-namespace TargetMkt\Action;
+namespace TargetMkt\Application\Middleware;
 
 use Interop\Container\ContainerInterface;
-use TargetMkt\Action\BootstrapAction;
 use TargetMkt\Infrastructure\Bootstrap;
 
-class BootstrapActionFactory 
+class BootstrapMiddlewareFactory 
 {
 	public function __invoke(ContainerInterface $container)
 	{
 		$bootstrap = new Bootstrap();
-		return new BootstrapAction($bootstrap);
+		return new BootstrapMiddleware($bootstrap);
 	}
 }
