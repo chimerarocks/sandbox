@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="clients")
+ * @ORM\Table(name="address")
  */
 class Address
 {
@@ -36,6 +36,12 @@ class Address
      * @ORM\Column(type="string")
      */
     protected $state;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="TargetMkt\Entity\Client", inversedBy="addresses")
+     * @ORM\JoinColumn(name="client_id", referencedColumnName="id")
+     */
+    protected $client;
 
     /**
      * @return int|null
@@ -85,5 +91,15 @@ class Address
     public function getState()
     {
         return $this->state;
+    }
+
+    public function setClient($client)
+    {
+        $this->client = $client;
+    }
+
+    public function getClient()
+    {
+        return $this->client;
     }
 }

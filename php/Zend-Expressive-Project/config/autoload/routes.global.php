@@ -9,6 +9,7 @@ return [
         'factories' => [
             TargetMkt\Action\HomePageAction::class => TargetMkt\Action\HomePageFactory::class,
             TargetMkt\Action\UserPageAction::class => TargetMkt\Action\UserPageFactory::class,
+            TargetMkt\Action\TestPageAction::class => TargetMkt\Action\TestPageFactory::class,
         ],
     ],
 
@@ -29,6 +30,12 @@ return [
             'name' => 'user',
             'path' => '/user',
             'middleware' => TargetMkt\Action\UserPageAction::class,
+            'allowed_methods' => ['GET'],
+        ],
+        [
+            'name' => 'test',
+            'path' => '/test',
+            'middleware' => TargetMkt\Action\TestPageAction::class,
             'allowed_methods' => ['GET'],
         ],
     ],

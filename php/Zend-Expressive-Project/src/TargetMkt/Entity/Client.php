@@ -33,6 +33,16 @@ class Client
     protected $cpf;
 
     /**
+     * @ORM\OneToMany(targetEntity="TargetMkt\Entity\Address", cascade="persist", mappedBy="client")
+     */
+    protected $addresses;
+
+    public function __construct()
+    {
+        $this->addresses = new \Doctrine\Common\Collections\ArrayCollection;
+    }
+
+    /**
      * @return int|null
      */
     public function getId()
@@ -70,5 +80,15 @@ class Client
     public function getCpf()
     {
     	return $this->cpf;
+    }
+
+    public function addAddress($address)
+    {
+        $this->addresses->add($address);
+    }
+
+    public function getAddresses()
+    {
+        return $this->addresses;
     }
 }

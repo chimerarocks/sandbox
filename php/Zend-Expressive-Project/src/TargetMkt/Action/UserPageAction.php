@@ -11,6 +11,7 @@ use Zend\Expressive\Template;
 use Zend\Expressive\Plates\PlatesRenderer;
 use Zend\Expressive\Twig\TwigRenderer;
 use Zend\Expressive\ZendView\ZendViewRenderer;
+use Doctrine\ORM\EntityManager;
 
 class UserPageAction
 {
@@ -23,6 +24,7 @@ class UserPageAction
 
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next = null)
     {
+
         return new HtmlResponse($this->template->render('app::user-page', ['userName' => 'User']));
     }
 }

@@ -16,6 +16,6 @@ class BootstrapAction
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next = null)
     {
         $this->bootstrap->create();
-        $next($request, $response);
+        return $next($request, $response);
     }
 }

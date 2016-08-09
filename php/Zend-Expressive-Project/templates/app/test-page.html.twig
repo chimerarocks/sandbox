@@ -1,0 +1,70 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Test{% endblock %}
+
+{% block content %}
+    <table class="table">
+    	<tr>
+    		<th>
+    			Cliente
+    		</th>
+    		<th>
+    			Email
+    		</th>
+    		<th>
+    			Cpf
+    		</th>
+    		<th>
+    			Cep
+    		</th>
+            <th>
+                Logradouro
+            </th>
+            <th>
+                Cidade
+            </th>
+            <th>
+                Estado
+            </th>
+            <th>
+                Cep
+            </th>
+            <th>
+                Logradouro
+            </th>
+            <th>
+                Cidade
+            </th>
+            <th>
+                Estado
+            </th>
+    	</tr>
+        {% for client in clients %}
+        <tr>
+    		<td>
+    			{{ client.name }}
+    		</td>
+            <td>
+                {{ client.email }}
+            </td>
+            <td>
+                {{ client.cpf }}
+            </td>
+                {% for address in client.addresses %}
+                <td>
+                    {{ address.cep }}
+                </td>
+                <td>
+                    {{ address.street }}
+                </td>
+                <td>
+                    {{ address.city }}
+                </td>
+                <td>
+                    {{ address.state }}
+                </td>
+                {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
