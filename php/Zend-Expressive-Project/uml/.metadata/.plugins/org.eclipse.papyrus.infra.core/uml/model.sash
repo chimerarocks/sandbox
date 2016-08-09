@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<di:SashWindowsMngr xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.eclipse.org/papyrus/0.7.0/sashdi">
+  <sashModel currentSelection="//@sashModel/@windows.0/@children.0" restoreActivePage="true">
+    <windows>
+      <children xsi:type="di:TabFolder" currentSelection="//@sashModel/@windows.0/@children.0/@children.4">
+        <children>
+          <emfPageIdentifier href="papyrus.welcome:dynamic#/"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="platform:/resource/uml/model.notation#_WfFrcF50EeaNrvWAGFjFrg"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="platform:/resource/uml/model.notation#_Iw1rYF53EeaNrvWAGFjFrg"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="platform:/resource/uml/model.notation#_oBpmcF54EeaNrvWAGFjFrg"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="platform:/resource/uml/model.notation#_oX-J0F56EeaNrvWAGFjFrg"/>
+        </children>
+      </children>
+    </windows>
+  </sashModel>
+</di:SashWindowsMngr>

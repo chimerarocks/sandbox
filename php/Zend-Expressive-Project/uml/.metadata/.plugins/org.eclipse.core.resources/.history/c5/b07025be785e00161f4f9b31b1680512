@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_zidwgF5zEeaNrvWAGFjFrg" name="RootElement" visibility="public">
+  <packagedElement xmi:type="uml:Package" xmi:id="_LH8ssF53EeaNrvWAGFjFrg" name="System">
+    <packagedElement xmi:type="uml:Package" xmi:id="_QjyDQF53EeaNrvWAGFjFrg" name="Infrastructure">
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_mTUR0F53EeaNrvWAGFjFrg" client="_QjyDQF53EeaNrvWAGFjFrg" supplier="_Uisv4F53EeaNrvWAGFjFrg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_SZqm0F53EeaNrvWAGFjFrg" name="Application">
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_jNYboF53EeaNrvWAGFjFrg" client="_SZqm0F53EeaNrvWAGFjFrg" supplier="_Uisv4F53EeaNrvWAGFjFrg"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_kv9BoF53EeaNrvWAGFjFrg" client="_SZqm0F53EeaNrvWAGFjFrg" supplier="_QjyDQF53EeaNrvWAGFjFrg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_Uisv4F53EeaNrvWAGFjFrg" name="Domain"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_Vp6PkF53EeaNrvWAGFjFrg" name="Interface">
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_bX4fAF53EeaNrvWAGFjFrg" client="_Vp6PkF53EeaNrvWAGFjFrg" supplier="_SZqm0F53EeaNrvWAGFjFrg"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_exjJgF53EeaNrvWAGFjFrg" client="_Vp6PkF53EeaNrvWAGFjFrg" supplier="_QjyDQF53EeaNrvWAGFjFrg"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_g_N68F53EeaNrvWAGFjFrg" client="_Vp6PkF53EeaNrvWAGFjFrg" supplier="_Uisv4F53EeaNrvWAGFjFrg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_gGGsMF54EeaNrvWAGFjFrg" client="_LH8ssF53EeaNrvWAGFjFrg" supplier="_cWAesF54EeaNrvWAGFjFrg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_cWAesF54EeaNrvWAGFjFrg" name="Database"/>
+</uml:Model>
