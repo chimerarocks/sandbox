@@ -19,9 +19,9 @@ return [
 		],
 		'driver' => [
 			'TargetMkt_driver' => [
-				'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+				'class' => 'Doctrine\ORM\Mapping\Driver\YamlDriver',
 				'cache' => 'array',
-				'paths' => [__DIR__ . '/../../src/TargetMkt/Domain/Entity']
+				'paths' => [__DIR__ . '/../../src/TargetMkt/Infrastructure/Persistence/Doctrine/ORM']
 			],
 			'orm_default' => [
 				'drivers' => [
