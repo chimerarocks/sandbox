@@ -10,6 +10,7 @@ return [
             TargetMkt\Application\Action\HomePageAction::class => TargetMkt\Application\Action\HomePageFactory::class,
             TargetMkt\Application\Action\UserPageAction::class => TargetMkt\Application\Action\UserPageFactory::class,
             TargetMkt\Application\Action\TestPageAction::class => TargetMkt\Application\Action\TestPageFactory::class,
+            TargetMkt\Application\Action\Customer\CustomerListPageAction::class => TargetMkt\Application\Action\Customer\CustomerListPageFactory::class,
         ],
     ],
 
@@ -36,6 +37,12 @@ return [
             'name' => 'test',
             'path' => '/test',
             'middleware' => TargetMkt\Application\Action\TestPageAction::class,
+            'allowed_methods' => ['GET'],
+        ],
+        [
+            'name' => 'customer.list',
+            'path' => '/admin/customers',
+            'middleware' => TargetMkt\Application\Action\Customer\CustomerListPageAction::class,
             'allowed_methods' => ['GET'],
         ],
     ],
