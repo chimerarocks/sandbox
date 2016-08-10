@@ -29,7 +29,7 @@ class CustomerUpdatePageAction
     	$id = $request->getAttribute('id');
     	$entity = $this->repository->find($id);
 
-        if (strtoupper($request->getMethod()) == 'POST') {
+        if (strtoupper($request->getMethod()) == 'PUT') {
             $data = $request->getParsedBody();
             $entity
                 ->setName($data['name'])

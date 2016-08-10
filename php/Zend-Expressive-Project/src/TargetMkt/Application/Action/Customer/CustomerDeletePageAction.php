@@ -29,7 +29,7 @@ class CustomerDeletePageAction
     	$id = $request->getAttribute('id');
     	$entity = $this->repository->find($id);
 
-        if (strtoupper($request->getMethod()) == 'POST') {
+        if (strtoupper($request->getMethod()) == 'DELETE') {
             $this->repository->remove($entity);
             $flash = $request->getAttribute('flash');
             $flash->setMessage('success', 'Contato removido com sucesso');
