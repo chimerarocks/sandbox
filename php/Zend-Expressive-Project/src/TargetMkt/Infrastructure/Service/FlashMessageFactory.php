@@ -4,7 +4,7 @@ namespace TargetMkt\Infrastructure\Service;
 
 use Interop\Container\ContainerInterface;
 
-class CustomerRepositoryFactory
+class FlashMessageFactory
 {
 	public function __invoke(ContainerInterface $container)
 	{

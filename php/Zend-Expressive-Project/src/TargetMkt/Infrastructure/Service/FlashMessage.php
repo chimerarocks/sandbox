@@ -34,7 +34,7 @@ class FlashMessage implements FlashMessageInterface {
 		return $this;
 	}
 
-	public function getMessage()
+	public function getMessage($key)
 	{
 		if(!$this->segment) {
 			$this->setNamespace();

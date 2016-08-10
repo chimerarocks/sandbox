@@ -6,6 +6,7 @@ use Interop\Container\ContainerInterface;
 use Zend\Expressive\Router\RouterInterface;
 use Zend\Expressive\Template\TemplateRendererInterface;
 use TargetMkt\Domain\Repository\CustomerRepositoryInterface;
+use TargetMkt\Application\Action\Customer\CustomerListPageAction;
 
 class CustomerListPageFactory
 {
