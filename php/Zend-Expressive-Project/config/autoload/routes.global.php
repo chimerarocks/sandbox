@@ -10,8 +10,8 @@ return [
             TargetMkt\Application\Action\HomePageAction::class => TargetMkt\Application\Action\HomePageFactory::class,
             TargetMkt\Application\Action\UserPageAction::class => TargetMkt\Application\Action\UserPageFactory::class,
             TargetMkt\Application\Action\TestPageAction::class => TargetMkt\Application\Action\TestPageFactory::class,
-            TargetMkt\Application\Action\Customer\CustomerListPageAction::class => TargetMkt\Application\Action\Customer\CustomerListPageFactory::class,
-            TargetMkt\Application\Action\Customer\CustomerCreatePageAction::class => TargetMkt\Application\Action\Customer\CustomerCreatePageFactory::class,
+            TargetMkt\Application\Action\Customer\CustomerListPageAction::class => TargetMkt\Application\Action\Customer\Factory\CustomerListPageFactory::class,
+            TargetMkt\Application\Action\Customer\CustomerCreatePageAction::class => TargetMkt\Application\Action\Customer\Factory\CustomerCreatePageFactory::class,
         ],
     ],
 

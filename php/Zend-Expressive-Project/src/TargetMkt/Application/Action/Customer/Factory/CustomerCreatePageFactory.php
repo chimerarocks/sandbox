@@ -1,6 +1,6 @@
 <?php
 
-namespace TargetMkt\Application\Action\Customer;
+namespace TargetMkt\Application\Action\Customer\Factory;
 
 use Interop\Container\ContainerInterface;
 use Zend\Expressive\Router\RouterInterface;
