@@ -4,6 +4,8 @@ use Zend\Expressive\Container\ApplicationFactory;
 use Zend\Expressive\Helper;
 use TargetMkt\Infrastructure\Persistence\Doctrine\Repository\CustomerRepositoryFactory;
 use TargetMkt\Domain\Repository\CustomerRepositoryInterface;
+use Aura\Session\Session;
+use DaMess\Factory\AuraSessionFactory;
 
 return [
     // Provides application-wide services.
@@ -22,6 +24,7 @@ return [
             Application::class => ApplicationFactory::class,
             Helper\UrlHelper::class => Helper\UrlHelperFactory::class,
             CustomerRepositoryInterface::class => CustomerRepositoryFactory::class,
+            Session::class => AuraSessionFactory::class,
         ],
         'aliases' => [
             'configuration' => 'config', //Doctrine needs a service called Configuration
