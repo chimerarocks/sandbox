@@ -1,6 +1,7 @@
 #TargetMkt.Domain.Entity.Customer.dcm.yml
 TargetMkt\Domain\Entity\Customer:
   type: entity
+  repositoryClass: TargetMkt\Infrastructure\Persistence\Doctrine\Repository\CustomerRepository
   table: customers
   id:
     id:

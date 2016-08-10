@@ -5,6 +5,7 @@ namespace TargetMkt\Application\Action;
 use Interop\Container\ContainerInterface;
 use Zend\Expressive\Router\RouterInterface;
 use Zend\Expressive\Template\TemplateRendererInterface;
+use TargetMkt\Domain\Repository\CustomerRepositoryInterface;
 
 class TestPageFactory
 {
@@ -14,6 +15,6 @@ class TestPageFactory
             ? $container->get(TemplateRendererInterface::class)
             : null;
 
-        return new TestPageAction($container->get(\Doctrine\ORM\EntityManager::class), $template);
+        return new TestPageAction($container->get(CustomerRepositoryInterface::class), $template);
     }
 }

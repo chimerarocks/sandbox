@@ -1,18 +1,14 @@
 <?php
 
-namespace TargetMkt\Application\Action;
+namespace TargetMkt\Application\Action\Customer;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\HtmlResponse;
-use Zend\Diactoros\Response\JsonResponse;
 use Zend\Expressive\Template;
-use TargetMkt\Domain\Entity\Address;
-use TargetMkt\Domain\Entity\Client;
-use TargetMkt\Domain\Entity\Customer;
 use TargetMkt\Domain\Repository\CustomerRepositoryInterface;
 
-class TestPageAction
+class CustomerListPageAction
 {
     private $template;
     private $repository;
@@ -25,11 +21,7 @@ class TestPageAction
 
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next = null)
     {
-        $customer = new Customer();
-        $customer->setName('joao');
-        $customer->setEmail('joao@user.com');
         $customers = $this->repository->findAll();
-
-        return new HtmlResponse($this->template->render('app::test-page', ['customers' => $customers]));
+        return new HtmlResponse($this->template->render('app::customer/list', ['customers' => $customers]));
     }
 }
