@@ -21,6 +21,7 @@ class Customer
 	public function setName($name)
 	{
 		$this->name = $name;
+		return $this;
 	}
 
 	public function getEmail()
@@ -31,5 +32,6 @@ class Customer
 	public function setEmail($email)
 	{
 		$this->email = $email;
+		return $this;
 	}
 }
