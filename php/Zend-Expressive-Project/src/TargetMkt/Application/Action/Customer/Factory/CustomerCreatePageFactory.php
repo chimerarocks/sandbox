@@ -14,6 +14,7 @@ class CustomerCreatePageFactory
     {
         $template = $container->get(TemplateRendererInterface::class);
         $repository = $container->get(CustomerRepositoryInterface::class);
-        return new CustomerCreatePageAction($repository, $template);
+        $router = $container->get(RouterInterface::class);
+        return new CustomerCreatePageAction($repository, $template, $router);
     }
 }
