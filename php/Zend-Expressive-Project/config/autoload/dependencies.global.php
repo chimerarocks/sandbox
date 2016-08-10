@@ -6,6 +6,8 @@ use TargetMkt\Infrastructure\Persistence\Doctrine\Repository\CustomerRepositoryF
 use TargetMkt\Domain\Repository\CustomerRepositoryInterface;
 use Aura\Session\Session;
 use DaMess\Factory\AuraSessionFactory;
+use TargetMkt\Domain\Service\FlashMessageInterface;
+use TargetMkt\Infrastructure\Service\FlashMessageFactory;
 
 return [
     // Provides application-wide services.
@@ -25,6 +27,7 @@ return [
             Helper\UrlHelper::class => Helper\UrlHelperFactory::class,
             CustomerRepositoryInterface::class => CustomerRepositoryFactory::class,
             Session::class => AuraSessionFactory::class,
+            FlashMessageInterface::class => FlashMessageFactory::class,
         ],
         'aliases' => [
             'configuration' => 'config', //Doctrine needs a service called Configuration
