@@ -11,6 +11,7 @@ return [
             TargetMkt\Application\Action\UserPageAction::class => TargetMkt\Application\Action\UserPageFactory::class,
             TargetMkt\Application\Action\TestPageAction::class => TargetMkt\Application\Action\TestPageFactory::class,
             TargetMkt\Application\Action\Customer\CustomerListPageAction::class => TargetMkt\Application\Action\Customer\CustomerListPageFactory::class,
+            TargetMkt\Application\Action\Customer\CustomerCreatePageAction::class => TargetMkt\Application\Action\Customer\CustomerCreatePageFactory::class,
         ],
     ],
 
@@ -44,6 +45,12 @@ return [
             'path' => '/admin/customers',
             'middleware' => TargetMkt\Application\Action\Customer\CustomerListPageAction::class,
             'allowed_methods' => ['GET'],
+        ],
+        [
+            'name' => 'customer.create',
+            'path' => '/admin/customer/create',
+            'middleware' => TargetMkt\Application\Action\Customer\CustomerCreatePageAction::class,
+            'allowed_methods' => ['GET','POST'],
         ],
     ],
 ];
