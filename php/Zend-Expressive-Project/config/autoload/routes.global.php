@@ -12,6 +12,8 @@ return [
             TargetMkt\Application\Action\TestPageAction::class => TargetMkt\Application\Action\TestPageFactory::class,
             TargetMkt\Application\Action\Customer\CustomerListPageAction::class => TargetMkt\Application\Action\Customer\Factory\CustomerListPageFactory::class,
             TargetMkt\Application\Action\Customer\CustomerCreatePageAction::class => TargetMkt\Application\Action\Customer\Factory\CustomerCreatePageFactory::class,
+            TargetMkt\Application\Action\Customer\CustomerUpdatePageAction::class => TargetMkt\Application\Action\Customer\Factory\CustomerUpdatePageFactory::class,
+            TargetMkt\Application\Action\Customer\CustomerDeletePageAction::class => TargetMkt\Application\Action\Customer\Factory\CustomerDeletePageFactory::class,
         ],
     ],
 
@@ -51,6 +53,28 @@ return [
             'path' => '/admin/customer/create',
             'middleware' => TargetMkt\Application\Action\Customer\CustomerCreatePageAction::class,
             'allowed_methods' => ['GET','POST'],
+        ],
+        [
+            'name' => 'customer.update',
+            'path' => '/admin/customer/update/{id}',
+            'middleware' => TargetMkt\Application\Action\Customer\CustomerUpdatePageAction::class,
+            'allowed_methods' => ['GET','POST'],
+            'options' => [
+                'tokens' => [
+                    'id' => '\d+'
+                ]
+            ]
+        ],
+        [
+            'name' => 'customer.delete',
+            'path' => '/admin/customer/delete/{id}',
+            'middleware' => TargetMkt\Application\Action\Customer\CustomerDeletePageAction::class,
+            'allowed_methods' => ['GET','POST'],
+            'options' => [
+                'tokens' => [
+                    'id' => '\d+'
+                ]
+            ]
         ],
     ],
 ];

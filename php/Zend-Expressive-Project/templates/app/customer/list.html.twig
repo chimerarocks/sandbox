@@ -20,10 +20,13 @@
 				    			#
 				    		</th>
 				    		<th>
-				    			Customer
+				    			Cliente
 				    		</th>
 				    		<th>
 				    			Email
+				    		</th>
+				    		<th>
+				    			Ações
 				    		</th>
 				    	</tr>
 				        {% for customer in customers %}
@@ -36,6 +39,11 @@
 				    		</td>
 				            <td>
 				                {{ customer.email }}
+				            </td>
+				            <td>
+				                <a href="{{ url('customer.update', {'id': customer.id}) }}">Editar</a>
+				                |
+				                <a href="{{ url('customer.delete', {'id': customer.id}) }}">Excluir</a>
 				            </td>
 				        </tr>
 				        {% endfor %}

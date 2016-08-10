@@ -25,11 +25,12 @@ class CustomerRepository extends EntityRepository implements CustomerRepositoryI
 	}
 	public function remove($entity)
 	{
-		
+		$this->getEntityManager()->remove($entity);
+		$this->getEntityManager()->flush();	
 	}
 	public function find($id)
 	{
-		
+		return parent::find($id);
 	}
 	public function findAll()
 	{
