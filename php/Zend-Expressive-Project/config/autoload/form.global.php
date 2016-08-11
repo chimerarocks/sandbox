@@ -8,6 +8,8 @@ $forms = [
 		'invokables' => [
 		],
 		'factories' => [
+			Zend\View\HelperPluginManager::class => 
+				TargetMkt\Infrastructure\View\HelperPluginManagerFactory::class
 		]
 	],
 	'view_helpers' => [
