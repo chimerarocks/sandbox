@@ -4,11 +4,15 @@ namespace TargetMkt\Application\Form;
 
 use Zend\Form\Form;
 use Zend\Form\Element;
+use Zend\Hydrator\ClassMethods;
+use TargetMkt\Domain\Entity\Customer;
 
 class CustomerForm extends Form
 {
 	public function __construct($name = 'customer', array $options = [])
 	{
+		$this->setHydrator(new ClassMethods());
+		$this->setObject(new Customer());
 		parent::__construct($name, $options);
 
 		$this->add([

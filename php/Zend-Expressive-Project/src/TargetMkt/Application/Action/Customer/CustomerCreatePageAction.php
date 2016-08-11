@@ -29,16 +29,11 @@ class CustomerCreatePageAction
     {
         $form = new CustomerForm();
         if (strtoupper($request->getMethod()) == 'POST') {
-            $dataRaw = $request->getParsedBody();
+            $data = $request->getParsedBody();
             $form->setData($data);
             
             if($form->isValid()) {
-                $data = $form->getData();
-                $entity = new Customer();
-                $entity
-                    ->setName($data['name'])
-                    ->setEmail($data['email'])
-                ;
+                $entity = $form->getData();
                 $this->repository->create($entity);
                 $flash = $request->getAttribute('flash');
                 $flash->setMessage('success', 'Contato cadastrado com sucesso');
