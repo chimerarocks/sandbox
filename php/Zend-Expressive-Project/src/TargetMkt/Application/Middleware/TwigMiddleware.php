@@ -28,7 +28,7 @@ class TwigMiddleware
      		if (!$helperManager->has($name)) {
      			return false;
      		}
-     		$callable = [$helperManager->get($name, '__invoke')];
+     		$callable = [$helperManager->get($name), '__invoke'];
      		$options = ['is_safe' => ['html']];
      		return new Twig_SimpleFunction(null, $callable, $options);
      	}); 

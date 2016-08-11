@@ -10,6 +10,7 @@ use Zend\Expressive\Router\RouterInterface;
 use Zend\Expressive\Template;
 use TargetMkt\Domain\Repository\CustomerRepositoryInterface;
 use TargetMkt\Domain\Entity\Customer;
+use TargetMkt\Application\Form\CustomerForm;
 
 class CustomerCreatePageAction
 {
@@ -26,21 +27,30 @@ class CustomerCreatePageAction
 
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next = null)
     {
+        $form = new CustomerForm();
         if (strtoupper($request->getMethod()) == 'POST') {
-            $data = $request->getParsedBody();
-            $entity = new Customer();
-            $entity
-                ->setName($data['name'])
-                ->setEmail($data['email'])
-            ;
-            $this->repository->create($entity);
-            $flash = $request->getAttribute('flash');
-            $flash->setMessage('success', 'Contato cadastrado com sucesso');
+            $dataRaw = $request->getParsedBody();
+            $form->setData($data);
             
-            return new RedirectResponse(
-                $this->router->generateUri('customer.list')
-            );
+            if($form->isValid()) {
+                $data = $form->getData();
+                $entity = new Customer();
+                $entity
+                    ->setName($data['name'])
+                    ->setEmail($data['email'])
+                ;
+                $this->repository->create($entity);
+                $flash = $request->getAttribute('flash');
+                $flash->setMessage('success', 'Contato cadastrado com sucesso');
+                
+                return new RedirectResponse(
+                    $this->router->generateUri('customer.list')
+                );
+            }
+
         }
-        return new HtmlResponse($this->template->render('app::customer/create'));
+        return new HtmlResponse($this->template->render('app::customer/create', [
+            'form' => $form
+        ]));
     }
 }
