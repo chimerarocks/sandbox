@@ -1,13 +1,19 @@
 <?php
 use Zend\Expressive\Container\ApplicationFactory;
 use Zend\Expressive\Helper;
+use TargetMkt\Application\Middleware;
 
 return [
     'dependencies' => [
         'factories' => [
-            Helper\ServerUrlMiddleware::class => Helper\ServerUrlMiddlewareFactory::class,
-            Helper\UrlHelperMiddleware::class => Helper\UrlHelperMiddlewareFactory::class,
-            TargetMkt\Application\Middleware\BootstrapMiddleware::class => TargetMkt\Application\Middleware\BootstrapMiddlewareFactory::class,
+            Helper\ServerUrlMiddleware::class => 
+                Helper\ServerUrlMiddlewareFactory::class,
+            Helper\UrlHelperMiddleware::class 
+                => Helper\UrlHelperMiddlewareFactory::class,
+            Middleware\BootstrapMiddleware::class => 
+                Middleware\BootstrapMiddlewareFactory::class,
+            Middleware\TwigMiddleware::class => 
+                Middleware\TwigMiddlewareFactory::class,
         ],
     ],
     // This can be used to seed pre- and/or post-routing middleware
@@ -41,7 +47,8 @@ return [
                 // - pre-conditions
                 // - modifications to outgoing responses
                 Helper\ServerUrlMiddleware::class,
-                TargetMkt\Application\Middleware\BootstrapMiddleware::class,
+                Middleware\BootstrapMiddleware::class,
+                Middleware\TwigMiddleware::class,
             ],
             'priority' => 10000,
         ],
