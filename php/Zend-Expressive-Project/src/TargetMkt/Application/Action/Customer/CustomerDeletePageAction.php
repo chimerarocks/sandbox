@@ -10,6 +10,8 @@ use Zend\Expressive\Router\RouterInterface;
 use Zend\Expressive\Template;
 use TargetMkt\Domain\Repository\CustomerRepositoryInterface;
 use TargetMkt\Domain\Entity\Customer;
+use TargetMkt\Application\Form\CustomerForm;
+use TargetMkt\Application\Form\HttpMethodElement;
 
 class CustomerDeletePageAction
 {
@@ -29,9 +31,14 @@ class CustomerDeletePageAction
     	$id = $request->getAttribute('id');
     	$entity = $this->repository->find($id);
 
+
+        $form = new CustomerForm();
+        $form->add(new HttpMethodElement('DELETE'));
+        $form->bind($entity);
+
         if (strtoupper($request->getMethod()) == 'DELETE') {
-            $this->repository->remove($entity);
             $flash = $request->getAttribute('flash');
+            $this->repository->remove($entity);
             $flash->setMessage('success', 'Contato removido com sucesso');
             
             return new RedirectResponse(
@@ -39,6 +46,6 @@ class CustomerDeletePageAction
             );
         }
 
-        return new HtmlResponse($this->template->render('app::customer/delete', ['customer' => $entity]));
+        return new HtmlResponse($this->template->render('app::customer/delete', ['form' => $form]));
     }
 }
