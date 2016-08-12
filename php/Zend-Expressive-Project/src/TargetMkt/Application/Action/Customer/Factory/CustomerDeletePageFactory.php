@@ -7,6 +7,7 @@ use Zend\Expressive\Router\RouterInterface;
 use Zend\Expressive\Template\TemplateRendererInterface;
 use TargetMkt\Domain\Repository\CustomerRepositoryInterface;
 use TargetMkt\Application\Action\Customer\CustomerDeletePageAction;
+use TargetMkt\Application\Form\CustomerForm;
 
 class CustomerDeletePageFactory
 {
@@ -15,6 +16,7 @@ class CustomerDeletePageFactory
         $template = $container->get(TemplateRendererInterface::class);
         $repository = $container->get(CustomerRepositoryInterface::class);
         $router = $container->get(RouterInterface::class);
-        return new CustomerDeletePageAction($repository, $template, $router);
+        $form = $container->get(CustomerForm::class);
+        return new CustomerDeletePageAction($repository, $template, $router, $form);
     }
 }

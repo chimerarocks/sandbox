@@ -4,8 +4,6 @@ namespace TargetMkt\Application\Form;
 
 use Zend\Form\Form;
 use Zend\Form\Element;
-use Zend\Hydrator\ClassMethods;
-use TargetMkt\Domain\Entity\Customer;
 use TargetMkt\Application\InputFilter\CustomerInputFilter;
 
 class CustomerForm extends Form
@@ -13,9 +11,6 @@ class CustomerForm extends Form
 	public function __construct($name = 'customer', array $options = [])
 	{
 		parent::__construct($name, $options);
-		$this->setHydrator(new ClassMethods());
-		$this->setObject(new Customer());
-		$this->setInputFilter(new CustomerInputFilter());
 
 		$this->add([
 			'name' => 'id',

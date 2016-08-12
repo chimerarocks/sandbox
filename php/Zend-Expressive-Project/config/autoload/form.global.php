@@ -9,7 +9,9 @@ $forms = [
 		],
 		'factories' => [
 			Zend\View\HelperPluginManager::class => 
-				TargetMkt\Infrastructure\View\HelperPluginManagerFactory::class
+				TargetMkt\Infrastructure\View\HelperPluginManagerFactory::class,
+			TargetMkt\Application\Form\CustomerForm::class =>
+				TargetMkt\Application\Form\Factory\CustomerFormFactory::class,
 		]
 	],
 	'view_helpers' => [
