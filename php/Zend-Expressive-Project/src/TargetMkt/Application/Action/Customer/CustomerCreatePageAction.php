@@ -36,7 +36,7 @@ class CustomerCreatePageAction
                 $entity = $form->getData();
                 $this->repository->create($entity);
                 $flash = $request->getAttribute('flash');
-                $flash->setMessage('success', 'Contato cadastrado com sucesso');
+                $lash->setMessage('success', 'Contato cadastrado com sucesso');
                 
                 return new RedirectResponse(
                     $this->router->generateUri('customer.list')
