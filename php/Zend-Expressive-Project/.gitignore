@@ -2,3 +2,6 @@
 composer.phar
 phpunit.xml
 vendor/
+targetmkt.sublime-project
+targetmkt.sublime-workspace
+.phpintel
