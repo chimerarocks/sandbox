@@ -28,6 +28,7 @@ class CustomerInputFilter extends InputFilter
 			'validators' => [
 				[
 					'name' => Validator\NotEmpty::class,
+					'break_chain_on_failure' => true,
 					'options' => [
 						'messages' => [
 							Validator\NotEmpty::IS_EMPTY =>	'Este campo é obrigatório.' 
@@ -38,7 +39,8 @@ class CustomerInputFilter extends InputFilter
 					'name' => Validator\EmailAddress::class,
 					'options' => [
 						'messages' => [
-							Validator\EmailAddress::INVALID =>	'Este email não é válido.' 
+							Validator\EmailAddress::INVALID =>	'Este email não é válido.',
+							Validator\EmailAddress::INVALID_FORMAT =>	'Este email não é válido.'
 						]
 					]
 				]
