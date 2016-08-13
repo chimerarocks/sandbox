@@ -5,8 +5,7 @@
 		"illuminate/contracts": "~5.2",
 		"illuminate/http": "~5.2",
 		"illuminate/support": "~5.2",
-		"illuminate/database": "~5.2",
-		"cviebrock/eloquent-sluggable": "~3.0"
+		"illuminate/database": "~5.2"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~5.0",
@@ -14,7 +13,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"ChimeraRocks\\Category\\": "src/ChimeraRocks/Category",
+			"ChimeraRocks\\Tag\\": "src/ChimeraRocks/Tag",
 			"Test\\": "tests/Test"
 		}
 	}

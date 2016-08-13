@@ -1,10 +1,10 @@
 <?php
 
-namespace ChimeraRocks\Category\Providers;
+namespace ChimeraRocks\Tag\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class CategoryServiceProvider extends ServiceProvider
+class TagServiceProvider extends ServiceProvider
 {
 
 	public function boot()
