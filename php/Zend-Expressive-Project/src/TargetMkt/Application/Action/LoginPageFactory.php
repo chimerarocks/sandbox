@@ -15,7 +15,7 @@ class LoginPageFactory
         $router   = $container->get(RouterInterface::class);
         $template = $container->get(TemplateRendererInterface::class);
         $form 	  = $container->get(LoginForm::class);
-        $auth     = $container->get(AuthService::class)
+        $auth     = $container->get(AuthService::class);
 
         return new LoginPageAction($router, $template, $form, $auth);
     }

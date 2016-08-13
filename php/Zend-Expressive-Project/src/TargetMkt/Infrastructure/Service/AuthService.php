@@ -21,7 +21,7 @@ class AuthService implements AuthInterface {
 		 */
 		$adapter = $this->auth->getAdapter();
 		$adapter->setIdentity($email);
-		$adapter->setCredencial($password);
+		$adapter->setCredential($password);
 		$result = $this->auth->authenticate();
 		return $result->isValid();
 	}
