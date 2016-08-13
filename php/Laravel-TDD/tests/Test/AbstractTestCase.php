@@ -30,4 +30,11 @@ abstract class AbstactTestCase extends TestCase
 			'--realpath' => realpath(__DIR__ . '/../../src/resources/migrations')
 		]);
 	}
+
+	public function getPackageProviders($app)
+	{
+		return [
+			\Cviebrock\EloquentSluggable\SluggableServiceProvider::class,
+		];
+	}
 }
