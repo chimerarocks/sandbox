@@ -7,13 +7,22 @@ return [
             TargetMkt\Application\Action\PingAction::class => TargetMkt\Application\Action\PingAction::class,
         ],
         'factories' => [
-            TargetMkt\Application\Action\HomePageAction::class => TargetMkt\Application\Action\HomePageFactory::class,
-            TargetMkt\Application\Action\UserPageAction::class => TargetMkt\Application\Action\UserPageFactory::class,
-            TargetMkt\Application\Action\TestPageAction::class => TargetMkt\Application\Action\TestPageFactory::class,
-            TargetMkt\Application\Action\Customer\CustomerListPageAction::class => TargetMkt\Application\Action\Customer\Factory\CustomerListPageFactory::class,
-            TargetMkt\Application\Action\Customer\CustomerCreatePageAction::class => TargetMkt\Application\Action\Customer\Factory\CustomerCreatePageFactory::class,
-            TargetMkt\Application\Action\Customer\CustomerUpdatePageAction::class => TargetMkt\Application\Action\Customer\Factory\CustomerUpdatePageFactory::class,
-            TargetMkt\Application\Action\Customer\CustomerDeletePageAction::class => TargetMkt\Application\Action\Customer\Factory\CustomerDeletePageFactory::class,
+            TargetMkt\Application\Action\LoginPageAction::class => 
+                TargetMkt\Application\Action\LoginPageFactory::class,
+            TargetMkt\Application\Action\HomePageAction::class => 
+                TargetMkt\Application\Action\HomePageFactory::class,
+            TargetMkt\Application\Action\UserPageAction::class => 
+                TargetMkt\Application\Action\UserPageFactory::class,
+            TargetMkt\Application\Action\TestPageAction::class => 
+                TargetMkt\Application\Action\TestPageFactory::class,
+            TargetMkt\Application\Action\Customer\CustomerListPageAction::class => 
+                TargetMkt\Application\Action\Customer\Factory\CustomerListPageFactory::class,
+            TargetMkt\Application\Action\Customer\CustomerCreatePageAction::class => 
+                TargetMkt\Application\Action\Customer\Factory\CustomerCreatePageFactory::class,
+            TargetMkt\Application\Action\Customer\CustomerUpdatePageAction::class => 
+                TargetMkt\Application\Action\Customer\Factory\CustomerUpdatePageFactory::class,
+            TargetMkt\Application\Action\Customer\CustomerDeletePageAction::class => 
+                TargetMkt\Application\Action\Customer\Factory\CustomerDeletePageFactory::class,
         ],
     ],
 
@@ -41,6 +50,12 @@ return [
             'path' => '/test',
             'middleware' => TargetMkt\Application\Action\TestPageAction::class,
             'allowed_methods' => ['GET'],
+        ],
+        [
+            'name' => 'auth.login',
+            'path' => '/auth/login',
+            'middleware' => TargetMkt\Application\Action\LoginPageAction::class,
+            'allowed_methods' => ['GET', 'POST'],
         ],
         [
             'name' => 'customer.list',

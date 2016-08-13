@@ -12,6 +12,8 @@ $forms = [
 				TargetMkt\Infrastructure\View\HelperPluginManagerFactory::class,
 			TargetMkt\Application\Form\CustomerForm::class =>
 				TargetMkt\Application\Form\Factory\CustomerFormFactory::class,
+			TargetMkt\Application\Form\LoginForm::class =>
+				TargetMkt\Application\Form\Factory\LoginFormFactory::class,
 		]
 	],
 	'view_helpers' => [
