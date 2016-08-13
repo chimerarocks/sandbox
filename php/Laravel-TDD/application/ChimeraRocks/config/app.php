@@ -163,6 +163,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         ChimeraRocks\Category\Providers\CategoryServiceProvider::class,
+        ChimeraRocks\Tag\Providers\TagServiceProvider::class,
 
     ],
 

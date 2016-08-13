@@ -21,7 +21,8 @@
         ],
         "psr-4": {
             "App\\": "app/",
-						"ChimeraRocks\\Category\\": "vendor/chimerarocks/category/src/ChimeraRocks/Category/"
+						"ChimeraRocks\\Category\\": "vendor/chimerarocks/category/src/ChimeraRocks/Category/",
+						"ChimeraRocks\\Tag\\": "vendor/chimerarocks/tag/src/ChimeraRocks/Tag/"
         }
     },
     "autoload-dev": {
