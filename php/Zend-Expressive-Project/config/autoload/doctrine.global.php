@@ -28,6 +28,14 @@ return [
 					'TargetMkt\Domain\Entity' => 'TargetMkt_driver'
 				]
 			]
-		]
+		],
+		'authentication' => [
+            'orm_default' => [
+                'object_manager' => \Doctrine\ORM\EntityManager::class,
+                'identity_class' => \TargetMkt\Domain\Entity\User::class,
+                'identity_property' => 'email',
+                'credential_property' => 'password',
+            ],
+        ],
 	]
 ];

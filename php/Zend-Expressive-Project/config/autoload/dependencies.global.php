@@ -1,14 +1,4 @@
 <?php
-use Zend\Expressive\Application;
-use Zend\Expressive\Container\ApplicationFactory;
-use Zend\Expressive\Helper;
-use TargetMkt\Infrastructure\Persistence\Doctrine\Repository\CustomerRepositoryFactory;
-use TargetMkt\Domain\Repository\CustomerRepositoryInterface;
-use Aura\Session\Session;
-use DaMess\Factory\AuraSessionFactory;
-use TargetMkt\Domain\Service\FlashMessageInterface;
-use TargetMkt\Infrastructure\Service\FlashMessageFactory;
-
 return [
     // Provides application-wide services.
     // We recommend using fully-qualified class names whenever possible as
@@ -18,21 +8,33 @@ return [
         // not require arguments to the constructor. Map a service name to the
         // class name.
         'invokables' => [
-            // Fully\Qualified\InterfaceName::class => Fully\Qualified\ClassName::class,
-            Helper\ServerUrlHelper::class => Helper\ServerUrlHelper::class,
+            \Zend\Expressive\Helper\ServerUrlHelper::class => 
+            
+                \Zend\Expressive\Helper\ServerUrlHelper::class,
         ],
         // Use 'factories' for services provided by callbacks/factory classes.
         'factories' => [
             Application::class => ApplicationFactory::class,
-            Helper\UrlHelper::class => Helper\UrlHelperFactory::class,
-            CustomerRepositoryInterface::class => CustomerRepositoryFactory::class,
-            Session::class => AuraSessionFactory::class,
-            FlashMessageInterface::class => FlashMessageFactory::class,
-            'doctrine:fixtures_cmd:load'   => \CodeEdu\FixtureFactory::class,
+            \Symfony\Component\Console\Helper\UrlHelper::class => 
+                \Zend\Expressive\Helper\UrlHelperFactory::class,
+
+            \TargetMkt\Domain\Repository\CustomerRepositoryInterface::class => 
+                \TargetMkt\Infrastructure\Persistence\Doctrine\Repository\CustomerRepositoryFactory::class,
+
+            \Aura\Session\Session::class => 
+                \DaMess\Factory\AuraSessionFactory::class,
+
+            \TargetMkt\Domain\Service\FlashMessageInterface::class => 
+                \TargetMkt\Infrastructure\Service\FlashMessageFactory::class,
+
+            'doctrine:fixtures_cmd:load'   => 
+                \CodeEdu\FixtureFactory::class,
         ],
         'aliases' => [
             'Configuration' => 'config', //Doctrine needs a service called Configuration
-            'Config' => 'config'
+            'Config' => 'config',
+            \Zend\Authentication\AuthenticationService::class =>
+                'doctrin.authenticationservice.orm_default'
         ],
     ],
 ];
