@@ -1,0 +1,6 @@
+composer require --dev "orchestra/testbench=~3.0"
+	Para testar aplicações laravel, tendo acesso total ao framework
+		Necessário rm vendor e composer.lock
+
+composer require cviebrock/eloquent-sluggable:~3.0
+	Para gerar slugs, a versão quatro não tem trait
