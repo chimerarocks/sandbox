@@ -8,11 +8,13 @@
 		"illuminate/database": "~5.1"
 	},
 	"require-dev": {
-		"phpunit/phpunit": "~5.0"
+		"phpunit/phpunit": "~5.0",
+		"orchestra/testbench": "~3.0"
 	},
 	"autoload": {
 		"psr-4": {
-			"ChimeraRocks\\Category\\": "src/Category"
+			"ChimeraRocks\\Category\\": "src/ChimeraRocks/Category",
+			"Test\\Category\\": "tests/Test/Category"
 		}
 	}
 }
