@@ -1,10 +1,10 @@
 <?php
 
-namespace Test\Category;
+namespace Test;
 
 use Orchestra\Testbench\TestCase;
 
-class AbstactTestCase extends TestCase
+abstract class AbstactTestCase extends TestCase
 {
 	/**
 	 * Copied from https://github.com/orchestral/testbench
@@ -27,7 +27,7 @@ class AbstactTestCase extends TestCase
 	public function migrate()
 	{
 		$this->artisan('migrate', [
-			'--realpath' => realpath(__DIR__ . '/../../src/resources/migrations');
+			'--realpath' => realpath(__DIR__ . '/../../src/resources/migrations')
 		]);
 	}
 }
