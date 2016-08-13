@@ -10,7 +10,7 @@ class CreateChimeraRocksCategoriesTable
 		Schema::create('chimerarocks_categories', function (Blueprint $table) {
 			$table->increments('id');
 			$table->integer('parent_id')->nullable(true)->unsigned();
-			$table->foreign('parent_id')->references->('id')->on('chimerarocks_categories');
+			$table->foreign('parent_id')->references('id')->on('chimerarocks_categories');
 			$table->string('name');
 			$table->boolean('active')->default(false);
 			$table->timestamps();
