@@ -10,8 +10,8 @@ class CategoryServiceProvider extends ServiceProvider
 	public function boot()
 	{
 		$this->publishes([
-			__DIR__ . '/../../resources/migrations/' => 
-				base_path('databases/migrations')]
+			__DIR__ . '/../../../resources/migrations/' => 
+				base_path('database/migrations')]
 			, 'migrations');
 	}
 
@@ -22,6 +22,6 @@ class CategoryServiceProvider extends ServiceProvider
      */
 	public function register()
 	{
-		throw new \Exception('Method not implemented');
+		//Todo
 	}
 }

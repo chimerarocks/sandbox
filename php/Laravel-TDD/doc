@@ -4,3 +4,5 @@ composer require --dev "orchestra/testbench=~3.0"
 
 composer require cviebrock/eloquent-sluggable:~3.0
 	Para gerar slugs, a versão quatro não tem trait
+
+Foi criado um link simbólico na pasta vendor de Application para a pasta Package de forma a emular uma instalação de pacote
