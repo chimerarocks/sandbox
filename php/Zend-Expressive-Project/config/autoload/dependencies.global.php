@@ -9,7 +9,7 @@ return [
         // class name.
         'invokables' => [
             \Zend\Expressive\Helper\ServerUrlHelper::class => 
-            
+
                 \Zend\Expressive\Helper\ServerUrlHelper::class,
         ],
         // Use 'factories' for services provided by callbacks/factory classes.
@@ -29,6 +29,9 @@ return [
 
             'doctrine:fixtures_cmd:load'   => 
                 \CodeEdu\FixtureFactory::class,
+
+            \TargetMkt\Infrastructure\Service\AuthService::class =>
+                \TargetMkt\Infrastructure\Service\AuthServiceFactory::class
         ],
         'aliases' => [
             'Configuration' => 'config', //Doctrine needs a service called Configuration
