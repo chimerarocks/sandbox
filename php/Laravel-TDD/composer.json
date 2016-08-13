@@ -14,7 +14,7 @@
 	"autoload": {
 		"psr-4": {
 			"ChimeraRocks\\Category\\": "src/ChimeraRocks/Category",
-			"Test\\Category\\": "tests/Test/Category"
+			"Test\\": "tests/Test"
 		}
 	}
 }
