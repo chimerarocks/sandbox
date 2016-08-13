@@ -34,4 +34,9 @@ class Category extends Model implements SluggableInterface
 	{
 		return $this->hasMany(Category::class, 'parent_id');
 	}
+
+	public function categorizable()
+	{
+		return $this->morphTo();
+	}
 }
