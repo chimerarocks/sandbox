@@ -3,6 +3,7 @@
 namespace ChimeraRocks\Category\Controllers;
 
 use ChimeraRocks\Category\Models\Category;
+use Illuminate\Http\Request;
 
 class AdminCategoryController extends Controller
 {
@@ -20,6 +21,13 @@ class AdminCategoryController extends Controller
 
 	public function create()
 	{
-		return view('chimeracategory::create');
+		$categories = $this->category->all();
+		return view('chimeracategory::create', compact('categories'));
+	}
+
+	public function store(Request $request)
+	{
+		$this->category->create($request->all());
+		return redirect()->route('admin.categories.index');
 	}
 }
