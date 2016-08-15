@@ -13,6 +13,8 @@ class CategoryServiceProvider extends ServiceProvider
 			__DIR__ . '/../../../resources/migrations/' => base_path('database/migrations')
 			],'migrations');
 
+		$this->loadViewsFrom(__DIR__ . '/../../../resources/views/chimeracategory', 'chimeracategory');
+
 		require_once __DIR__ . '/../Routes.php';
 	}
 

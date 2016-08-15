@@ -6,6 +6,6 @@ class AdminCategoryController extends Controller
 {
 	public function index()
 	{
-		return "Test Controller";
+		return view('chimeracategory::index');
 	}
 }
