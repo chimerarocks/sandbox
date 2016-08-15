@@ -20,6 +20,6 @@ class AdminCategoryController extends Controller
 
 	public function create()
 	{
-		return view('codecategory::create');
+		return view('chimeracategory::create');
 	}
 }
