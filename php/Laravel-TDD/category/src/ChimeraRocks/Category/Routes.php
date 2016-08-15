@@ -1,9 +1,7 @@
 <?php
 
-Route::group(['prefix' => 'categories'], function() {
+Route::group(['prefix' => 'categories', 'namespace' => 'ChimeraRocks\Category\Controllers'], function() {
 
-	Route::get('test', function() {
-		return "Test";
-	});
+	Route::get('test', 'AdminCategoryController@index');
 	
 });
