@@ -9,4 +9,5 @@ class AdminCategoryTest extends \TestCase
 		$this->visit('/admin/categories')
 			->see('Categories');
 	}
+
 }
