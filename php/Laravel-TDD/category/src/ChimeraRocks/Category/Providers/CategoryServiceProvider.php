@@ -15,7 +15,7 @@ class CategoryServiceProvider extends ServiceProvider
 
 		$this->loadViewsFrom(__DIR__ . '/../../../resources/views/chimeracategory', 'chimeracategory');
 
-		require_once __DIR__ . '/../Routes.php';
+		require __DIR__ . '/../Routes.php';
 	}
 
 	/**
