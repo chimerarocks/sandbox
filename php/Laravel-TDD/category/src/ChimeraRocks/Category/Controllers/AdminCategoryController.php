@@ -11,7 +11,7 @@ class AdminCategoryController extends Controller
 	private $category;
 	private $response;
 
-	public function __construct(Category $categoryk, ResponseFactory $response)
+	public function __construct(Category $category, ResponseFactory $response)
 	{
 		$this->category = $category;
 		$this->response = $response;
