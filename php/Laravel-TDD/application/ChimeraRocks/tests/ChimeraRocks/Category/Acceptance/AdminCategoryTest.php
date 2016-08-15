@@ -35,4 +35,14 @@ class AdminCategoryTest extends \TestCase
 			->click('Create')
 			->seePageIs('/admin/categories/create');
 	}
+
+	public function test_create_new_category()
+	{
+		$this->visit('/admin/categories/create')
+			->type('Category Test', 'name')
+			->check('active')
+			->press('Submit')
+			->seePageIs('/admin/categories');
+			->see('')
+	}
 }
