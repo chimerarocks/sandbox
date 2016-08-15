@@ -17,4 +17,9 @@ class AdminCategoryController extends Controller
 	{
 		return view('chimeracategory::index', ['categories' => $this->category->all()]);
 	}
+
+	public function create()
+	{
+		return view('codecategory::create');
+	}
 }
