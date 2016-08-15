@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateChimeraRocksCategoriesTable
+class CreateChimerarocksCategoriesTable
 {
 	public function up()
 	{
