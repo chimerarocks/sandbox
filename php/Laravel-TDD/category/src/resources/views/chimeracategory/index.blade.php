@@ -2,6 +2,8 @@
 
 @section('content')
 
-	View Test
+	<div class="container">
+		<h3>Categories</h3>
+	</div>
 
 @endsection
