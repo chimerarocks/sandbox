@@ -165,7 +165,6 @@ return [
         App\Providers\RouteServiceProvider::class,
         ChimeraRocks\Category\Providers\CategoryServiceProvider::class,
         ChimeraRocks\Tag\Providers\TagServiceProvider::class,
-
     ],
 
     /*
@@ -211,7 +210,6 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
     ],
 
 ];
