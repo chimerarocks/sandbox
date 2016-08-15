@@ -3,9 +3,12 @@
 namespace ChimeraRocks\Category\Acceptance\Testing;
 
 use ChimeraRocks\Category\Models\Category;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class AdminCategoryTest extends \TestCase
 {
+	use DatabaseTransactions;
+
 	public function test_can_visit_admin_categories_page()
 	{
 		$this->visit('/admin/categories')
