@@ -28,4 +28,10 @@ class AdminCategoryTest extends \TestCase
 			->see('Category3')
 			->see('Category4');
 	}
+
+	public function test_click_create_new_category()
+	{
+		$this->visit('/admin/categories')
+			->click('Create');
+	}
 }
