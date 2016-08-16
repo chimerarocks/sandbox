@@ -13,7 +13,9 @@ class TagServiceProvider extends ServiceProvider
 			__DIR__ . '/../../../resources/migrations/' => base_path('database/migrations')
 			],'migrations');
 
-		require_once __DIR__ . '/../Routes.php';
+		$this->loadViewsFrom(__DIR__ . '/../../../resources/views/chimeratag', 'chimeratag');
+
+		require __DIR__ . '/../Routes.php';
 	}
 
 	/**

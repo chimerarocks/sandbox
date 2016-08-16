@@ -31,6 +31,6 @@ class AdminCategoryController extends Controller
 	public function store(Request $request)
 	{
 		$this->category->create($request->all());
-		return $this->response->redirect()->route('admin.categories.index');
+		return redirect()->route('admin.categories.index');
 	}
 }
