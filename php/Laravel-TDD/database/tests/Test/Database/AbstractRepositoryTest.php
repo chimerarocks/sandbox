@@ -4,6 +4,7 @@ namespace Test\Database;
 
 use ChimeraRocks\Database\AbstractRepository;
 use ChimeraRocks\Database\Contracts\RepositoryInterface;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Mockery;
 use Test\AbstactTestCase;
 
@@ -47,5 +48,56 @@ class AbstractRepositoryTest extends AbstactTestCase
 
 		$this->assertCount(3, $mockRepository->all(['id', 'name']));
 		$this->assertInstanceOf(\stdClass::class, $mockRepository->all(['id', 'name'])[0]);
+	}
+
+	public function test_it_should_returns_create()
+	{
+		$mockRepository = Mockery::mock(AbstractRepository::class);
+		$mockStd = Mockery::mock(\stdClass::class);
+		$mockStd->id = 1;
+		$mockStd->name = 'name';
+
+		$mockRepository
+		    ->shouldReceive('create')
+		    ->with(['name' => 'stdClassName'])
+		    ->andReturn($mockStd);
+
+		$result = $mockRepository->create(['name' => 'stdClassName']);
+		$this->assertEquals(1, $result->id);
+		$this->assertInstanceOf(\stdClass::class, $result);
+	}
+
+	public function test_it_should_update_succeed()
+	{
+		$mockRepository = Mockery::mock(AbstractRepository::class);
+		$mockStd = Mockery::mock(\stdClass::class);
+		$mockStd->id = 1;
+		$mockStd->name = 'name';
+
+		$mockRepository
+		    ->shouldReceive('update')
+		    ->with(['name' => 'stdClassName'], 1)
+		    ->andReturn($mockStd);
+
+		$result = $mockRepository->update(['name' => 'stdClassName'], 1);
+		$this->assertEquals(1, $result->id);
+		$this->assertInstanceOf(\stdClass::class, $result);
+	}
+
+	/**
+	 * @expectedException \Illuminate\Database\Eloquent\ModelNotFoundException
+	 */
+	public function test_it_should_update_fails()
+	{
+		$mockRepository = Mockery::mock(AbstractRepository::class);
+		$throw = new ModelNotFoundException;
+		$throw->setModel(\stdClass::class);
+
+		$mockRepository
+		    ->shouldReceive('update')
+		    ->with(['name' => 'stdClassName'], 0)
+		    ->andThrow($throw);
+
+		$mockRepository->update(['name' => 'stdClassName'], 0);
 	}
 }
