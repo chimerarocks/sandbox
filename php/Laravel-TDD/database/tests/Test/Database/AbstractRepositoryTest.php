@@ -145,6 +145,39 @@ class AbstractRepositoryTest extends AbstactTestCase
 		    ->andReturn($mockStd);
 
 		$result = $mockRepository->find(1);
-		$this->assertTrue($result);
+		$this->assertInstanceOf(\stdClass::class, $result);
+	}
+
+	public function test_it_should_find_whit_columns_succeed()
+	{
+		$mockRepository = Mockery::mock(AbstractRepository::class);
+		$mockStd = Mockery::mock(\stdClass::class);
+		$mockStd->id = 1;
+		$mockStd->name = 'name';
+
+		$mockRepository
+		    ->shouldReceive('find')
+		    ->with(1, ['id', 'name'])
+		    ->andReturn($mockStd);
+
+		$result = $mockRepository->find(1, ['id', 'name']);
+		$this->assertInstanceOf(\stdClass::class, $result);
+	}
+
+	/**
+	 * @expectedException \Illuminate\Database\Eloquent\ModelNotFoundException
+	 */
+	public function test_it_should_find_fails()
+	{
+		$mockRepository = Mockery::mock(AbstractRepository::class);
+		$throw = new ModelNotFoundException;
+		$throw->setModel(\stdClass::class);
+
+		$mockRepository
+		    ->shouldReceive('find')
+		    ->with(0)
+		    ->andThrow($throw);
+
+		$result = $mockRepository->find(0);
 	}
 }
