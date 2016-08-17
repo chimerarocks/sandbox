@@ -7,9 +7,11 @@ use ChimeraRocks\Database\Contracts\RepositoryInterface;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Mockery;
 use Test\AbstactTestCase;
+use Test\Stubs\Models\Category;
 
 class AbstractRepositoryTest extends AbstactTestCase
 {
+
 	public function test_if_implements_repository_interface()
 	{
 		$mock = Mockery::mock(AbstractRepository::class);
@@ -180,4 +182,38 @@ class AbstractRepositoryTest extends AbstactTestCase
 
 		$result = $mockRepository->find(0);
 	}
+
+	public function test_it_should_findby_whit_columns_succeed()
+	{
+		$mockRepository = Mockery::mock(AbstractRepository::class);
+		$mockStd = Mockery::mock(\stdClass::class);
+		$mockStd->id = 1;
+		$mockStd->name = 'name';
+
+		$mockRepository
+		    ->shouldReceive('findBy')
+		    ->with('name', 'my-data',['id', 'name'])
+		    ->andReturn([$mockStd, $mockStd, $mockStd]);
+
+		$result = $mockRepository->findBy('name', 'my-data',['id', 'name']);
+		$this->assertCount(3, $result);
+		$this->assertInstanceOf(\stdClass::class, $result[0]);
+	}
+
+	public function test_it_should_findby_empty_succeed()
+	{
+		$mockRepository = Mockery::mock(AbstractRepository::class);
+		$mockStd = Mockery::mock(\stdClass::class);
+		$mockStd->id = 1;
+		$mockStd->name = 'name';
+
+		$mockRepository
+		    ->shouldReceive('findBy')
+		    ->with('name', '',['id', 'name'])
+		    ->andReturn([]);
+
+		$result = $mockRepository->findBy('name', '',['id', 'name']);
+		$this->assertCount(0, $result);
+	}
+
 }
