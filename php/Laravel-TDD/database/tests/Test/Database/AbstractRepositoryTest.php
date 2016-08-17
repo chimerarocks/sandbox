@@ -130,4 +130,21 @@ class AbstractRepositoryTest extends AbstactTestCase
 
 		$mockRepository->delete(0);
 	}
+
+	public function test_it_should_find_whitout_columns_succeed()
+	{
+		$mockRepository = Mockery::mock(AbstractRepository::class);
+		$mockStd = Mockery::mock(\stdClass::class);
+		$mockStd->id = 1;
+		$mockStd->name = 'name';
+		$mockStd->description = 'description';
+
+		$mockRepository
+		    ->shouldReceive('find')
+		    ->with(1)
+		    ->andReturn($mockStd);
+
+		$result = $mockRepository->find(1);
+		$this->assertTrue($result);
+	}
 }
