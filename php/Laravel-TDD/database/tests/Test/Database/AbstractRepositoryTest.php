@@ -100,4 +100,17 @@ class AbstractRepositoryTest extends AbstactTestCase
 
 		$mockRepository->update(['name' => 'stdClassName'], 0);
 	}
+
+	public function test_it_should_delete_succeed()
+	{
+		$mockRepository = Mockery::mock(AbstractRepository::class);
+
+		$mockRepository
+		    ->shouldReceive('delete')
+		    ->with(1)
+		    ->andReturn(true);
+
+		$result = $mockRepository->delete(1);
+		$this->assertTrue($result);
+	}
 }
