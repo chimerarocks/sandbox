@@ -22,7 +22,7 @@
 					<td>{{$category->id}}</td>
 					<td>{{$category->name}}</td>
 					<td>{{$category->active}}</td>
-					<td></td>
+					<td><a href="{{route('admin.categories.edit', ['id' => $category->id])}}">Update</a></td>
 				@empty
 					<td colspan="4"> Nenhuma categoria registrada </td>
 				</tr>

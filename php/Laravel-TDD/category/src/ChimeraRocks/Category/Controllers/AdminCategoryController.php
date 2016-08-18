@@ -35,4 +35,29 @@ class AdminCategoryController extends Controller
 		$this->categoryRepository->create($request->all());
 		return redirect()->route('admin.categories.index');
 	}
+
+	public function edit($id)
+	{
+		$category = $this->categoryRepository->find($id);
+		$categories = $this->categoryRepository->all();
+		return $this->response->view('chimeracategory::edit', compact('category', 'categories'));
+	}
+
+	public function update(Request $request, $id)
+	{
+		$data = $request->all();
+		if (!isset($data['active'])) {
+			$data['active'] = false;
+		} else {
+			$data['active'] = true;
+		}
+
+		if (!isset($data['parent_id']) || (isset($data['parent_id']) && $data['parent_id'])) {
+			$data['parent_id'] = null;
+		}
+
+		$category = $this->categoryRepository->update($data, $id);
+
+		return redirect()->route('admin.categories.index');
+	}
 }

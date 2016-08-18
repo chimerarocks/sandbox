@@ -45,4 +45,21 @@ class AdminCategoryTest extends \TestCase
 			->seePageIs('/admin/categories')
 			->see('Category Test');
 	}
+
+	public function test_click_update_category()
+	{
+		$this->visit('/admin/categories')
+			->click('Update')
+			->seePageIs('/admin/categories/edit/1');
+	}
+
+	public function test_update_category()
+	{
+		$this->visit('/admin/categories/edit/1')
+			->type('Category Test Updated', 'name')
+			->check('active')
+			->press('Update')
+			->seePageIs('/admin/categories')
+			->see('Category Test Updated');
+	}
 }
