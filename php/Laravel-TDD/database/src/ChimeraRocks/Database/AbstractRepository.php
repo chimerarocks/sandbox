@@ -4,36 +4,57 @@ namespace ChimeraRocks\Database;
 
 use ChimeraRocks\Database\Contracts\RepositoryInterface;
 
-class AbstractRepository implements RepositoryInterface
+abstract class AbstractRepository implements RepositoryInterface
 {
+	/**
+	 * @var \Illuminate\Database\Eloquent\Model
+	 */
+	protected $model;
+
+	public function __construct()
+	{
+		$this->makeModel();
+	}
+
+	abstract public function model();
+
+	public function makeModel()
+	{
+		$class = $this->model();
+		$this->model = new $class;
+		return $this->model;
+	}
 
 	public function all(array $columns = ['*'])
 	{
-		throw new \Exception('Method not implemented');
+		return $this->model->get($columns);
 	}
 
 	public function create(array $data)
 	{
-		throw new \Exception('Method not implemented');
+		return $this->model->create($data);
 	}
 
 	public function update(array $data, $id)
 	{
-		throw new \Exception('Method not implemented');
+		$model = $this->find($id);
+		$model->update($data);
+		return $model;
 	}
 
 	public function delete($id)
 	{
-		throw new \Exception('Method not implemented');
+		$model = $this->find($id);
+		return $model->delete();
 	}
 
 	public function find($id, array $columns = ['*'])
 	{
-		throw new \Exception('Method not implemented');
+		return $this->model->findOrFail($id, $columns);
 	}
 
 	public function findBy($field, $value, $columns = ['*'])
 	{
-		throw new \Exception('Method not implemented');
+		return $this->model->where($field, '=',$value)->get($columns);
 	}
 }
