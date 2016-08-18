@@ -18,13 +18,11 @@
         "symfony/dom-crawler": "2.8.*|3.0.*"
     },
     "autoload": {
-        "classmap": [
-            "database"
-        ],
         "psr-4": {
             "App\\": "app/",
 			"ChimeraRocks\\Category\\": "vendor/chimerarocks/category/src/ChimeraRocks/Category/",
-			"ChimeraRocks\\Tag\\": "vendor/chimerarocks/tag/src/ChimeraRocks/Tag/"
+			"ChimeraRocks\\Tag\\": "vendor/chimerarocks/tag/src/ChimeraRocks/Tag/",
+            "ChimeraRocks\\Database\\": "vendor/chimerarocks/database/src/ChimeraRocks/Database/"
         }
     },
     "autoload-dev": {
