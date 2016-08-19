@@ -25,6 +25,9 @@ class CategoryServiceProvider extends ServiceProvider
      */
 	public function register()
 	{
-		//Todo
+		$this->app->bind(
+			\ChimeraRocks\Category\Repositories\CategoryRepositoryInterface::class,
+				\ChimeraRocks\Category\Repositories\CategoryRepositoryEloquent::class
+		);
 	}
 }

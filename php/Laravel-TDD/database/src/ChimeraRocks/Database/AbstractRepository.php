@@ -2,14 +2,17 @@
 
 namespace ChimeraRocks\Database;
 
+use ChimeraRocks\Database\Contracts\CriteriaCollectionInterface;
+use ChimeraRocks\Database\Contracts\CriteriaInterface;
 use ChimeraRocks\Database\Contracts\RepositoryInterface;
 
-abstract class AbstractRepository implements RepositoryInterface
+abstract class AbstractRepository implements RepositoryInterface, CriteriaCollectionInterface
 {
-	/**
-	 * @var \Illuminate\Database\Eloquent\Model
-	 */
 	protected $model;
+
+	protected $isIgnoreCriteria = false;
+
+	protected $criteriaCollection = [];
 
 	public function __construct()
 	{
@@ -27,6 +30,7 @@ abstract class AbstractRepository implements RepositoryInterface
 
 	public function all(array $columns = ['*'])
 	{
+		$this->applyCriteria();
 		return $this->model->get($columns);
 	}
 
@@ -50,11 +54,57 @@ abstract class AbstractRepository implements RepositoryInterface
 
 	public function find($id, array $columns = ['*'])
 	{
+		$this->applyCriteria();
 		return $this->model->findOrFail($id, $columns);
 	}
 
 	public function findBy($field, $value, $columns = ['*'])
 	{
+		$this->applyCriteria();
 		return $this->model->where($field, '=',$value)->get($columns);
+	}
+
+	public function addCriteria(CriteriaInterface $criteria)
+	{
+		$this->criteriaCollection[] = $criteria;
+
+		return $this;
+	}
+
+	public function getCriteriaCollection()
+	{
+		return $this->criteriaCollection;
+	}
+
+	public function getByCriteria(CriteriaInterface $criteria)
+	{
+		$this->model = $criteria->apply($this->model, $this);
+		return $this;
+	}
+
+	public function applyCriteria()
+	{
+		if ($this->isIgnoreCriteria) {
+			return $this;
+		}
+
+		foreach ($this->getCriteriaCollection() as $criteria) {
+			$this->model = $criteria->apply($this->model, $this);
+		}
+
+		return $this;
+	}
+
+	public function ignoreCriteria($isIgnore = true)
+	{
+		$this->isIgnoreCriteria = $isIgnore;
+		return $this;
+	}
+
+	public function clearCriteria()
+	{
+		$this->criteriaCollection = [];
+		$this->makeModel();
+		return $this;
 	}
 }

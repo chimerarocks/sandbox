@@ -2,7 +2,7 @@
 
 namespace ChimeraRocks\Category\Controllers;
 
-use ChimeraRocks\Category\Repositories\CategoryRepository;
+use ChimeraRocks\Category\Repositories\CategoryRepositoryInterface;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
 
@@ -11,7 +11,7 @@ class AdminCategoryController extends Controller
 	private $categoryRepository;
 	private $response;
 
-	public function __construct(CategoryRepository $categoryRepository, ResponseFactory $response)
+	public function __construct(CategoryRepositoryInterface $categoryRepository, ResponseFactory $response)
 	{
 		$this->categoryRepository = $categoryRepository;
 		$this->response = $response;

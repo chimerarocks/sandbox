@@ -4,12 +4,12 @@ namespace Test\Database;
 
 use Test\AbstactTestCase;
 use Test\Stubs\Models\Category;
-use Test\Stubs\Repositories\CategoryRepository;
+use Test\Stubs\Repositories\CategoryRepositoryEloquent;
 
 class CategoryRepositoryTest extends AbstactTestCase
 {
 	/**
-	 * @var Test\Stubs\Repositories\CategoryRepository
+	 * @var Test\Stubs\Repositories\CategoryRepositoryEloquent
 	 */
 	private $repository;
 
@@ -17,7 +17,7 @@ class CategoryRepositoryTest extends AbstactTestCase
 	{
 		parent::setUp();
 		$this->migrate();
-		$this->repository = new CategoryRepository;
+		$this->repository = new CategoryRepositoryEloquent;
 		$this->createCategories();
 	}
 
